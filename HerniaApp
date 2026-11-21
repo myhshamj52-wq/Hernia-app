@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل الوعي بالفتق - Hernia Awareness</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for medical & UI icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Cairo for professional Arabic typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        medicalBlue: '#2563eb',
+                        medicalPurple: '#7c3aed',
+                        softBg: '#f8fafc',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #0f172a;
+        }
+        /* Custom scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-0 sm:p-4">
+
+    <!-- Mobile Device Frame Container -->
+    <div id="app-frame" class="w-full sm:max-w-[428px] h-screen sm:h-[880px] bg-softBg sm:rounded-[40px] shadow-2xl flex flex-col overflow-hidden relative border-0 sm:border-[8px] sm:border-slate-800">
+        
+        <!-- Status Bar (Mobile Header Simulation) -->
+        <div class="bg-gradient-to-r from-medicalBlue to-medicalPurple text-white px-6 pt-4 pb-3 flex justify-between items-center select-none shrink-0">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-shield-heart text-xl animate-pulse"></i>
+                <span class="font-bold text-lg tracking-wide">وعي الفتق</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm opacity-90">
+                <span id="current-time">9:41</span>
+                <i class="fa-solid fa-wifi text-xs"></i>
+                <i class="fa-solid fa-battery-full text-xs"></i>
+            </div>
+        </div>
+
+        <!-- Main Scrollable Content Area -->
+        <main id="content-container" class="flex-1 overflow-y-auto pb-24 px-4 pt-4">
+            
+            <!-- SECTION 1: الرئيسية (Home) -->
+            <section id="sec-home" class="view-section space-y-4">
+                <!-- Welcome Banner -->
+                <div class="bg-gradient-to-br from-blue-600 to-purple-600 text-white rounded-2xl p-5 shadow-lg relative overflow-hidden">
+                    <div class="absolute -left-6 -bottom-6 w-28 h-28 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+                    <h1 class="text-2xl font-bold mb-1">مرحباً بك في دليلك الصحي</h1>
+                    <p class="text-white/90 text-sm leading-relaxed mb-4">مرجعك الموثوق لفهم الفتق، أسبابه، طرق الوقاية، والإرشادات العلاجية والعلاج الطبيعي.</p>
+                    <button type="button" onclick="switchTab('types')" class="bg-white text-medicalPurple px-4 py-2 rounded-xl font-bold text-sm shadow-md hover:bg-slate-50 transition active:scale-95 flex items-center gap-2">
+                        <span>استكشف أنواع الفتق</span>
+                        <i class="fa-solid fa-arrow-left text-xs"></i>
+                    </button>
+                </div>
+
+                <!-- Daily Health Tip Card -->
+                <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-100 flex items-start gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-purple-50 text-medicalPurple flex items-center justify-center shrink-0 text-lg">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-sm">نصيحة اليوم الصحية</h3>
+                        <p id="daily-tip" class="text-slate-600 text-xs mt-1 leading-relaxed">تجنب حبس النفس أو الضغط المبالغ فيه أثناء رفع الأوزان الثقيلة لحماية جدار البطن من الضعف.</p>
+                    </div>
+                </div>
+
+                <!-- Quick Stats Grid -->
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 text-center">
+                        <div class="text-medicalBlue text-2xl font-black mb-1">4 أنواع</div>
+                        <div class="text-slate-500 text-xs font-medium">رئيسية للفتق الشائع</div>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 text-center">
+                        <div class="text-medicalPurple text-2xl font-black mb-1">100%</div>
+                        <div class="text-slate-500 text-xs font-medium">العلاج بالجراحة فقط</div>
+                    </div>
+                </div>
+
+                <!-- Quick Navigation Cards -->
+                <h2 class="font-bold text-slate-800 text-base mt-2">الأقسام السريعة</h2>
+                <div class="grid grid-cols-2 gap-3 pb-2">
+                    <div onclick="switchTab('types')" class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-300 transition cursor-pointer group">
+                        <div class="w-10 h-10 rounded-xl bg-blue-50 text-medicalBlue flex items-center justify-center mb-3 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-diagram-project text-lg"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm">أنواع الفتق</h4>
+                        <p class="text-slate-500 text-[11px] mt-0.5">الأربي، السري، وغيرها</p>
+                    </div>
+
+                    <div onclick="switchTab('quiz')" class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:border-purple-300 transition cursor-pointer group">
+                        <div class="w-10 h-10 rounded-xl bg-purple-50 text-medicalPurple flex items-center justify-center mb-3 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-clipboard-question text-lg"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm">حقيقة أم خرافة</h4>
+                        <p class="text-slate-500 text-[11px] mt-0.5">اختبر معلوماتك الطبية</p>
+                    </div>
+
+                    <div onclick="switchTab('prevention')" class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-300 transition cursor-pointer group">
+                        <div class="w-10 h-10 rounded-xl bg-blue-50 text-medicalBlue flex items-center justify-center mb-3 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-person-walking text-lg"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm">الوقاية والعلاج</h4>
+                        <p class="text-slate-500 text-[11px] mt-0.5">دور العلاج الطبيعي</p>
+                    </div>
+
+                    <div onclick="switchTab('doctor')" class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:border-purple-300 transition cursor-pointer group">
+                        <div class="w-10 h-10 rounded-xl bg-purple-50 text-medicalPurple flex items-center justify-center mb-3 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-stethoscope text-lg"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800 text-sm">اسأل الطبيب</h4>
+                        <p class="text-slate-500 text-[11px] mt-0.5">أسئلة استشارية مقترحة</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: أنواع الفتق (Types) -->
+            <section id="sec-types" class="view-section hidden space-y-4">
+                <div class="mb-2">
+                    <h2 class="text-xl font-bold text-slate-800">أنواع الفتق الشائعة</h2>
+                    <p class="text-slate-500 text-xs mt-0.5">اضغط على أي نوع لعرض التفاصيل والأعراض الخاصة به</p>
+                </div>
+
+                <!-- Inguinal Hernia Card -->
+                <div onclick="openModal('ing')" class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-400 transition cursor-pointer flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-xl bg-blue-50 text-medicalBlue flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-person"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-sm">الفتق الأربي (Inguinal Hernia)</h3>
+                            <p class="text-slate-500 text-xs mt-0.5">الأكثر انتشاراً، يظهر في منطقة الفخذ.</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-left text-slate-400 text-xs"></i>
+                </div>
+
+                <!-- Umbilical Hernia Card -->
+                <div onclick="openModal('umb')" class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-400 transition cursor-pointer flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-xl bg-purple-50 text-medicalPurple flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-baby"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-sm">الفتق السري (Umbilical Hernia)</h3>
+                            <p class="text-slate-500 text-xs mt-0.5">يظهر حول منطقة السرة، شائع لدى الرضع والبالغين.</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-left text-slate-400 text-xs"></i>
+                </div>
+
+                <!-- Incisional Hernia Card -->
+                <div onclick="openModal('inc')" class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-400 transition cursor-pointer flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-xl bg-blue-50 text-medicalBlue flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-band-aid"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-sm">الفتق الجراحي (Incisional Hernia)</h3>
+                            <p class="text-slate-500 text-xs mt-0.5">ينشأ في مكان جراحة بطنية سابقة لم تلتئم تماماً.</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-left text-slate-400 text-xs"></i>
+                </div>
+
+                <!-- Femoral Hernia Card -->
+                <div onclick="openModal('fem')" class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-400 transition cursor-pointer flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-xl bg-purple-50 text-medicalPurple flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-800 text-sm">الفتق الفخذي (Femoral Hernia)</h3>
+                            <p class="text-slate-500 text-xs mt-0.5">أقل شيوعاً وأكثر عرضة للمضاعفات، خاصة لدى النساء.</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-left text-slate-400 text-xs"></i>
+                </div>
+            </section>
+
+            <!-- SECTION 3: حقيقة أم خرافة (Quiz & Myths) -->
+            <section id="sec-quiz" class="view-section hidden space-y-4">
+                <div class="mb-2">
+                    <h2 class="text-xl font-bold text-slate-800">حقيقة أم خرافة؟</h2>
+                    <p class="text-slate-500 text-xs mt-0.5">اضغط على البطاقة لكشف الإجابة الصحيحة وتصحيح المفاهيم الشائعة</p>
+                </div>
+
+                <div id="quiz-container" class="space-y-3">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </section>
+
+            <!-- SECTION 4: الوقاية والعلاج (Prevention & PT) -->
+            <section id="sec-prevention" class="view-section hidden space-y-4">
+                <div class="mb-2">
+                    <h2 class="text-xl font-bold text-slate-800">الوقاية والعلاج الطبيعي</h2>
+                    <p class="text-slate-500 text-xs mt-0.5">إرشادات حماية جدار البطن ودور إعادة التأهيل</p>
+                </div>
+
+                <!-- Lifting Poster Guidelines -->
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 space-y-3">
+                    <div class="flex items-center gap-2 text-medicalBlue">
+                        <i class="fa-solid fa-dumbbell text-lg"></i>
+                        <h3 class="font-bold text-sm">قاعدة الرفع الآمن</h3>
+                    </div>
+                    <p class="text-slate-600 text-xs leading-relaxed">
+                        عند رفع أي جسم ثقيل، تجنب الانحناء بظهر مستقيم. بدلاً من ذلك، اثنِ ركبتيك واجعل الحمل قريباً من جسمك واستخدم عضلات الساقين لتوزيع الجهد وتقليل الضغط المفاجئ على البطن.
+                    </p>
+                </div>
+
+                <!-- Post-Surgery PT Care -->
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 space-y-3">
+                    <div class="flex items-center gap-2 text-medicalPurple">
+                        <i class="fa-solid fa-heart-pulse text-lg"></i>
+                        <h3 class="font-bold text-sm">العلاج الطبيعي ما بعد الجراحة</h3>
+                    </div>
+                    <ul class="space-y-2 text-slate-600 text-xs">
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-green-500 mt-0.5"></i>
+                            <span>تعلم تقنيات التنفس السليم والتحكم بعضلات الجذع السفلي (Core Stabilization).</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-green-500 mt-0.5"></i>
+                            <span>التدرج في استعادة النشاط الحركي اليومي بدون إجهاد.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <i class="fa-solid fa-check text-green-500 mt-0.5"></i>
+                            <span>تجنب تمارين البطن العنيفة فوراً إلا بعد تصريح الجراح وأخصائي التأهيل.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Warning Alert -->
+                <div class="bg-rose-50 border border-rose-200 rounded-2xl p-4 text-rose-800 flex items-start gap-3">
+                    <i class="fa-solid fa-triangle-exclamation text-lg mt-0.5 text-rose-600"></i>
+                    <div>
+                        <h4 class="font-bold text-xs">متى تتوجه للطوارئ فوراً؟</h4>
+                        <p class="text-[11px] mt-1 text-rose-700 leading-relaxed">
+                            لو تحول نتوء الفتق إلى كتلة صلبة مؤلمة جداً ولم يعد يختفي عند الاستلقاء، وصاحبه غثيان أو تقيؤ، فهذه علامة "اختناق الفتق" وتتطلب تدخلاً جراحياً طارئاً.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 5: اسأل الطبيب (Doctor Q&A) -->
+            <section id="sec-doctor" class="view-section hidden space-y-4">
+                <div class="mb-2">
+                    <h2 class="text-xl font-bold text-slate-800">اسأل الطبيب (دليل العيادة)</h2>
+                    <p class="text-slate-500 text-xs mt-0.5">أسئلة مقترحة تطرحها على طبيبك أو أخصائي العلاج الطبيعي عند الاستشارة</p>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="w-6 h-6 rounded-full bg-blue-50 text-medicalBlue flex items-center justify-center text-xs font-bold">1</span>
+                            <h3 class="font-bold text-slate-800 text-sm">ما هو نوع الفتق المحدد الذي أُعاني منه؟</h3>
+                        </div>
+                        <p class="text-slate-500 text-xs pr-8">لمعرفة إذا كان أربياً أم سرياً، وما هو حجم الضعف في جدار البطن.</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="w-6 h-6 rounded-full bg-purple-50 text-medicalPurple flex items-center justify-center text-xs font-bold">2</span>
+                            <h3 class="font-bold text-slate-800 text-sm">هل الجراحة هي الخيار الوحيد أم يمكن المتابعة؟</h3>
+                        </div>
+                        <p class="text-slate-500 text-xs pr-8">لفهم ما إذا كانت حالتك تستدعي تدخلاً جراحياً فورياً أم مراقبة طبية دقيقة.</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="w-6 h-6 rounded-full bg-blue-50 text-medicalBlue flex items-center justify-center text-xs font-bold">3</span>
+                            <h3 class="font-bold text-slate-800 text-sm">متى يمكنني العودة للأنشطة الرياضية بعد العملية؟</h3>
+                        </div>
+                        <p class="text-slate-500 text-xs pr-8">لتحديد البرنامج الآمن للتعافي والعودة التدريجية للحركة.</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="w-6 h-6 rounded-full bg-purple-50 text-medicalPurple flex items-center justify-center text-xs font-bold">4</span>
+                            <h3 class="font-bold text-slate-800 text-sm">ما هي العلامات التي تستدعي الاتصال الفوري بالطبيب؟</h3>
+                        </div>
+                        <p class="text-slate-500 text-xs pr-8">للاطمئنان ضد أي مضاعفات مبكرة بعد الجراحة.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Bottom Navigation Bar -->
+        <nav class="absolute bottom-0 left-0 right-0 bg-white border-t border-slate-200 py-2 px-3 flex justify-around items-center z-10 shadow-lg">
+            <button type="button" onclick="switchTab('home')" id="nav-home" class="nav-btn flex flex-col items-center text-medicalBlue transition">
+                <i class="fa-solid fa-house text-lg mb-0.5"></i>
+                <span class="text-[10px] font-bold">الرئيسية</span>
+            </button>
+            <button type="button" onclick="switchTab('types')" id="nav-types" class="nav-btn flex flex-col items-center text-slate-400 hover:text-slate-600 transition">
+                <i class="fa-solid fa-diagram-project text-lg mb-0.5"></i>
+                <span class="text-[10px] font-medium">الأنواع</span>
+            </button>
+            <button type="button" onclick="switchTab('quiz')" id="nav-quiz" class="nav-btn flex flex-col items-center text-slate-400 hover:text-slate-600 transition">
+                <i class="fa-solid fa-clipboard-question text-lg mb-0.5"></i>
+                <span class="text-[10px] font-medium">حقيقة أم خرافة</span>
+            </button>
+            <button type="button" onclick="switchTab('prevention')" id="nav-prevention" class="nav-btn flex flex-col items-center text-slate-400 hover:text-slate-600 transition">
+                <i class="fa-solid fa-person-walking text-lg mb-0.5"></i>
+                <span class="text-[10px] font-medium">الوقاية</span>
+            </button>
+            <button type="button" onclick="switchTab('doctor')" id="nav-doctor" class="nav-btn flex flex-col items-center text-slate-400 hover:text-slate-600 transition">
+                <i class="fa-solid fa-stethoscope text-lg mb-0.5"></i>
+                <span class="text-[10px] font-medium">الطبيب</span>
+            </button>
+        </nav>
+
+        <!-- Detailed Info Modal -->
+        <div id="info-modal" onclick="handleBackdropClick(event)" class="absolute inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 hidden transition-opacity duration-200">
+            <div class="bg-white w-full sm:max-w-md rounded-t-[28px] sm:rounded-3xl p-6 max-h-[85vh] overflow-y-auto space-y-4 shadow-2xl relative">
+                <div class="w-12 h-1.5 bg-slate-300 rounded-full mx-auto mb-2 sm:hidden"></div>
+                <div class="flex justify-between items-center">
+                    <h3 id="modal-title" class="font-bold text-slate-800 text-lg"></h3>
+                    <button type="button" onclick="closeModal()" aria-label="إغلاق" class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 hover:bg-slate-200 transition">
+                        <i class="fa-solid fa-xmark text-sm"></i>
+                    </button>
+                </div>
+                <div id="modal-body" class="text-slate-600 text-xs leading-relaxed space-y-3">
+                    <!-- Dynamic modal content -->
+                </div>
+                <button type="button" onclick="closeModal()" class="w-full py-3 bg-gradient-to-r from-medicalBlue to-medicalPurple text-white rounded-xl font-bold text-sm shadow-md active:scale-95 transition">
+                    حسناً، فهمت
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JavaScript App Logic -->
+    <script>
+        // Modal Data Content Dictionary
+        const herniaData = {
+            ing: {
+                title: "الفتق الأربي (Inguinal Hernia)",
+                content: `
+                    <p class="font-semibold text-slate-800">ما هو؟</p>
+                    <p>يحدث عندما يبرز جزء من الأمعاء أو الأنسجة الدهنية من خلال نقطة ضعيفة في جدار البطن السفلي (القناة الأربية)، وهو النوع الأكثر شيوعاً وخاصة لدى الرجال.</p>
+                    <p class="font-semibold text-slate-800 mt-2">الأعراض البارزة:</p>
+                    <ul class="list-disc pr-4 space-y-1">
+                        <li>تورم أو نتوء في منطقة الفخذ يزداد وضوحاً عند الوقوف أو السعال.</li>
+                        <li>إحساس بالثقل، الشد، أو حرقان في موضع النتوء.</li>
+                        <li>ألم خفيف أو عدم إحساس بالراحة عند حمل الأشياء.</li>
+                    </ul>
+                `
+            },
+            umb: {
+                title: "الفتق السري (Umbilical Hernia)",
+                content: `
+                    <p class="font-semibold text-slate-800">ما هو؟</p>
+                    <p>يحدث عندما تبرز الأنسجة عبر جدار البطن في منطقة السرة مباشرة. يكون شائعاً للغاية عند الأطفال حديثي الولادة وغالباً ما يغلق تلقائياً، ولكنه قد يظهر لدى البالغين بسبب السمنة والحمل.</p>
+                    <p class="font-semibold text-slate-800 mt-2">الأعراض البارزة:</p>
+                    <ul class="list-disc pr-4 space-y-1">
+                        <li>بروز أو انتفاخ واضح حول السرة.</li>
+                        <li>يكون مرناً وصغيراً في البداية ويمكن إرجاعه للداخل عند الاستلقاء.</li>
+                    </ul>
+                `
+            },
+            inc: {
+                title: "الفتق الجراحي (Incisional Hernia)",
+                content: `
+                    <p class="font-semibold text-slate-800">ما هو؟</p>
+                    <p>ينشأ هذا النوع في موضع جرح أو شق بطني سابق (من عملية جراحية سابقة)، حيث لم يلتئم جدار البطن بقوة كافية وأصبح ضعيفاً.</p>
+                    <p class="font-semibold text-slate-800 mt-2">الأعراض البارزة:</p>
+                    <ul class="list-disc pr-4 space-y-1">
+                        <li>كتلة أو انتفاخ بارز بالقرب من الندبة الجراحية القديمة.</li>
+                        <li>شعور بالألم أو الانزعاج عند الضغط على موضع الانتفاخ.</li>
+                    </ul>
+                `
+            },
+            fem: {
+                title: "الفتق الفخذي (Femoral Hernia)",
+                content: `
+                    <p class="font-semibold text-slate-800">ما هو؟</p>
+                    <p>نوع أقل شيوعاً، يحدث أعلى الفخذ في القناة الفخذية. يكون أكثر عرضة للإصابة بالاختناق (انقطاع التروية الدموية) ويصيب النساء بنسبة أكبر.</p>
+                    <p class="font-semibold text-slate-800 mt-2">الأعراض البارزة:</p>
+                    <ul class="list-disc pr-4 space-y-1">
+                        <li>كتلة مؤلمة في أعلى الفخذ أو أسفل البطن.</li>
+                        <li>قد يترافق مع ألم حاد ومفاجئ يتطلب رعاية طبية عاجلة.</li>
+                    </ul>
+                `
+            }
+        };
+
+        // Quiz / Myth vs Reality Data
+        const quizItems = [
+            {
+                myth: "الحزام الطبي أو المشد يعالج الفتق وينهيه تماماً.",
+                fact: "خرافة ❌ الحزام الطبي يعتبر مسكناً ومؤقتاً فقط للحالات التي لا تستطيع الخضوع للجراحة فوراً، ولا يمكنه علاج ضعف جدار البطن، والحل النهائي هو التدخل الجراحي.",
+                icon: "fa-shield"
+            },
+            {
+                myth: "الفتق يمكن أن يختفي من تلقاء نفسه مع مرور الوقت.",
+                fact: "خرافة ❌ عضلات البطن الضعيفة لا تلتئم تلقائياً لغلق الفتق، وعادة ما يزداد حجم الفتق تدريجياً مع مرور الوقت إذا لم يتم إصلاحه جراحياً.",
+                icon: "fa-clock"
+            },
+            {
+                myth: "رفع الأشياء الثقيلة بطريقة خاطئة يعتبر من أبرز أسباب الفتق.",
+                fact: "حقيقة ✅ الضغط المفاجئ على البطن وحبس النفس أثناء رفع أثقال بطريقة غير صحيحة يضعف جدار البطن ويسهم في حدوث الفتق.",
+                icon: "fa-dumbbell"
+            },
+            {
+                myth: "عملية الفتق بالمنظار تتميز بفترة تعافي أسرع وألم أقل.",
+                fact: "حقيقة ✅ الجراحة بالمنظار توفر شقوقاً صغيرة، ألماً أقل بعد العملية، وعودة أسرع للنشاط اليومي والطبيعي مقارنة بالجراحة التقليدية المفتوحة في كثير من الحالات.",
+                icon: "fa-laptop-medical"
+            }
+        ];
+
+        // Switch Active Tab / Section
+        function switchTab(tabId) {
+            document.querySelectorAll('.view-section').forEach(sec => {
+                sec.classList.add('hidden');
+            });
+            const targetSec = document.getElementById('sec-' + tabId);
+            if (targetSec) {
+                targetSec.classList.remove('hidden');
+            }
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-medicalBlue');
+                btn.classList.add('text-slate-400');
+                const span = btn.querySelector('span');
+                if (span) {
+                    span.classList.remove('font-bold');
+                    span.classList.add('font-medium');
+                }
+            });
+
+            const activeBtn = document.getElementById('nav-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-slate-400');
+                activeBtn.classList.add('text-medicalBlue');
+                const span = activeBtn.querySelector('span');
+                if (span) {
+                    span.classList.remove('font-medium');
+                    span.classList.add('font-bold');
+                }
+            }
+
+            const container = document.getElementById('content-container');
+            if (container) {
+                container.scrollTop = 0;
+            }
+        }
+
+        // Modal Controls
+        function openModal(typeKey) {
+            const data = herniaData[typeKey];
+            if (!data) return;
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-body').innerHTML = data.content;
+            document.getElementById('info-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('info-modal').classList.add('hidden');
+        }
+
+        function handleBackdropClick(event) {
+            if (event.target.id === 'info-modal') {
+                closeModal();
+            }
+        }
+
+        // Render Quiz Cards
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            quizItems.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "bg-white p-4 rounded-2xl shadow-sm border border-slate-100 transition duration-200 select-none";
+                card.innerHTML = `
+                    <div class="flex items-start justify-between gap-3 cursor-pointer" onclick="toggleCard(${index})">
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-purple-50 text-medicalPurple flex items-center justify-center text-lg shrink-0 mt-0.5">
+                                <i class="fa-solid ${item.icon}"></i>
+                            </div>
+                            <div>
+                                <span class="text-[10px] font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded-md">السؤال رقم ${index + 1}</span>
+                                <h3 class="font-bold text-slate-800 text-sm mt-1">${item.myth}</h3>
+                            </div>
+                        </div>
+                        <i id="chevron-${index}" class="fa-solid fa-chevron-down text-slate-400 text-xs mt-3 transition-transform duration-300"></i>
+                    </div>
+                    <div id="answer-${index}" class="hidden mt-3 pt-3 border-t border-slate-100 text-slate-600 text-xs leading-relaxed transition-all duration-200">
+                        <p class="font-semibold text-slate-800 mb-1">النتيجة العلمية:</p>
+                        <p>${item.fact}</p>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Toggle Quiz Card State
+        function toggleCard(index) {
+            const ansDiv = document.getElementById('answer-' + index);
+            const chevron = document.getElementById('chevron-' + index);
+            if (!ansDiv || !chevron) return;
+            if (ansDiv.classList.contains('hidden')) {
+                ansDiv.classList.remove('hidden');
+                chevron.style.transform = 'rotate(180deg)';
+            } else {
+                ansDiv.classList.add('hidden');
+                chevron.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Update live time simulation
+        function updateTime() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const timeEl = document.getElementById('current-time');
+            if (timeEl) {
+                timeEl.textContent = `${hours}:${minutes}`;
+            }
+        }
+
+        // Initialize App on Load
+        window.addEventListener('DOMContentLoaded', function() {
+            renderQuiz();
+            updateTime();
+            setInterval(updateTime, 60000);
+        });
+    </script>
+</body>
+</html>
