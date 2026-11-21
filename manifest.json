@@ -1,0 +1,11 @@
+{
+  "name": "وعي الفتق - دليل الوعي بالفتق",
+  "short_name": "وعي الفتق",
+  "description": "مرجع صحي توعوي لفهم الفتق وأنواعه والوقاية والعلاج الطبيعي.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#2563eb",
+  "dir": "rtl",
+  "lang": "ar"
+}
